@@ -44,12 +44,14 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
-         state.error = null;
+        state.error = null;
+        state.isLoading = false;
          state.items = state.items.filter(
           (contact) => contact.id !== action.payload 
         );
       })
       .addCase(deleteContact.rejected, handleRejected);
+ 
   },
 });
 
